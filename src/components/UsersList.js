@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, ListGroup, ListGroupItem} from "reactstrap";
 
-const UsersList = ({users}) => {
+const UsersList = ({users, onDeleteUser}) => {
 
     return (
         <ListGroup>
@@ -19,13 +19,14 @@ const UsersList = ({users}) => {
                         return 0;
                     }
                 }).map(users => {
+                    const onDelete = () => onDeleteUser(users.id);
                     return <ListGroupItem key={users.id}>
                         <section style={{display: 'flex'}}>
                             <div style={{flexGrow: 1, margin: 'auto 0'}}>
                                 {users.firstName} {users.lastName}
                             </div>
                             <div>
-                                <Button outline color='danger'>
+                                <Button outline color='danger' onClick={onDelete}>
                                     Delete
                                 </Button>
                             </div>
